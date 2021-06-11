@@ -10,9 +10,8 @@
   "licensesUrl": "",
   "dependencies": {
     "com.unity.inputsystem": "1.0.2"
- },
- "keywords": [
-  ],
+  },
+  "keywords": [],
   "author": {
     "name": "Philipp Forstner",
     "email": "",
