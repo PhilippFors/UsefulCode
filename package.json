@@ -1,20 +1,15 @@
 {
   "name": "com.philfors.usefulcode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "Useful code",
-  "description": "Contains an inputmanager and some ScriptableObject data container stuff.",
+  "description": "Contains a collections of useful scripts from several projects.",
   "unity": "2020.3",
-  "unityRelease": "11f1",
-  "documentationUrl": "",
-  "changelogUrl": "",
-  "licensesUrl": "",
+  "unityRelease": "14f1",
   "dependencies": {
     "com.unity.inputsystem": "1.0.2"
   },
   "keywords": [],
   "author": {
-    "name": "Philipp Forstner",
-    "email": "",
-    "url": ""
+    "name": "Philipp Forstner"
   }
 }
