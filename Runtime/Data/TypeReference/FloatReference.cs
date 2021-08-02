@@ -1,7 +1,9 @@
-namespace DataContainer.TypeReference
+using Data.Variables;
+
+namespace Data.References
 {
     [System.Serializable]
-    public class FloatReference : TypeReference<float>
+    public class FloatReference : BaseReference<float, FloatVariable>
     {
     }
 }

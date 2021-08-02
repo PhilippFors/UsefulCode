@@ -1,0 +1,13 @@
+﻿using Data.Utility;
+using UnityEngine;
+
+namespace $NAMESPACE$
+{
+	[CreateAssetMenu(
+	    fileName = "$TYPE_NAME$RuntimeSet.asset",
+	    menuName = SOArchitecture_Folders.RUNTIMESET_SUBMENU + "$MENU_NAME$"
+	    )]
+	public class $TYPE_NAME$RuntimeSet : RuntimeSet<$TYPE$>
+	{
+	}
+}
