@@ -1,8 +1,8 @@
 {
   "name": "com.philfors.usefulcode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "displayName": "Useful code",
-  "description": "Contains a collections of useful scripts from several projects.",
+  "description": "Contains a collections of useful scripts and architecture.",
   "unity": "2020.3",
   "unityRelease": "14f1",
   "dependencies": {
