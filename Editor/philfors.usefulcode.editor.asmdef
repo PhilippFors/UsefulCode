@@ -1,0 +1,16 @@
+{
+    "name": "com.editor.usefulcode",
+    "rootNamespace": "",
+    "references": [
+        "com.philfors.usefulcode.runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
