@@ -1,16 +1,20 @@
 {
-    "name": "com.editor.usefulcode",
+    "name": "com.usefulcode.editor",
     "rootNamespace": "",
     "references": [
         "com.philfors.usefulcode.runtime"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }
