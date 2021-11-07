@@ -14,11 +14,12 @@ namespace UsefulCode.Input
 
         public bool IsPressed { get; private set; }
         public bool Triggered => action.triggered;
+        
         private InputAction action;
 
         public InputActionData(InputActionProperty property)
         {
-            this.action = property.action;
+            action = property.action;
             action.started += ctx => Started?.Invoke(ctx);
             action.started += ctx => IsPressed = true;
             
@@ -29,5 +30,8 @@ namespace UsefulCode.Input
         }
 
         public T ReadValue() => action.ReadValue<T>();
+
+        public void Enable() => action.Enable();
+        public void Disable() => action.Disable();
     }
 }
