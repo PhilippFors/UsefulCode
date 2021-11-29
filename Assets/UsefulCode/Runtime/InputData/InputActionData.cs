@@ -5,26 +5,21 @@ namespace UsefulCode.Input
 {
     public abstract class InputActionData
     {
-        public bool IsPressed { get; protected set; }
-        public bool Triggered => action.triggered;
-        public bool Released { get; protected set; }
-        
-        protected InputAction action;
-        
-        public abstract void Tick();
-        public void Enable() => action.Enable();
-        public void Disable() => action.Disable();
     }
-    
+
     /// <summary>
     /// This class provides the usual input action functionality but extends it with extra functionality.
     /// </summary>
     public class InputActionData<T> : InputActionData where T : struct
     {
+        public bool IsPressed { get; private set; }
+        public bool Triggered => action.triggered;
         public event Action<InputAction.CallbackContext> Started;
         public event Action<InputAction.CallbackContext> Performed;
         public event Action<InputAction.CallbackContext> Canceled;
-        
+
+        private InputAction action;
+
         public InputActionData(InputActionProperty property)
         {
             action = property.action;
@@ -37,16 +32,8 @@ namespace UsefulCode.Input
             action.canceled += ctx => IsPressed = false;
         }
 
-        public override void Tick()
-        {
-            if (action.phase == InputActionPhase.Canceled) {
-                Released = true;
-            }
-            else {
-                Released = false;
-            }
-        }
-
         public T ReadValue() => action.ReadValue<T>();
+        public void Enable() => action.Enable();
+        public void Disable() => action.Disable();
     }
 }
