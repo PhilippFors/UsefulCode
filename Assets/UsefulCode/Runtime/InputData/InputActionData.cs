@@ -6,7 +6,7 @@ namespace UsefulCode.Input
     /// <summary>
     /// This class provides the usual input action functionality but extends it with extra functionality.
     /// </summary>
-    public abstract class InputActionData
+    public class InputActionData
     {
         public bool IsPressed { get; private set; }
         public bool Triggered => action.triggered;
