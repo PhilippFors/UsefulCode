@@ -14,6 +14,7 @@ namespace UsefulCode.Input
 
         public bool IsPressed { get; private set; }
         public bool Triggered => action.triggered;
+        public bool Released { get; private set; }
         
         private InputAction action;
 
@@ -22,11 +23,21 @@ namespace UsefulCode.Input
             action = property.action;
             action.started += ctx => Started?.Invoke(ctx);
             action.started += ctx => IsPressed = true;
-            
+
             action.performed += ctx => Performed?.Invoke(ctx);
-            
+
             action.canceled += ctx => Canceled?.Invoke(ctx);
             action.canceled += ctx => IsPressed = false;
+        }
+
+        public void Tick()
+        {
+            if (action.phase == InputActionPhase.Canceled) {
+                Released = true;
+            }
+            else {
+                Released = false;
+            }
         }
 
         public T ReadValue() => action.ReadValue<T>();
