@@ -5,8 +5,17 @@ namespace UsefulCode.Input
 {
     public abstract class InputActionData
     {
+        public bool IsPressed { get; protected set; }
+        public bool Triggered => action.triggered;
+        public bool Released { get; protected set; }
+        
+        protected InputAction action;
+        
         public abstract void Tick();
+        public void Enable() => action.Enable();
+        public void Disable() => action.Disable();
     }
+    
     /// <summary>
     /// This class provides the usual input action functionality but extends it with extra functionality.
     /// </summary>
@@ -15,13 +24,7 @@ namespace UsefulCode.Input
         public event Action<InputAction.CallbackContext> Started;
         public event Action<InputAction.CallbackContext> Performed;
         public event Action<InputAction.CallbackContext> Canceled;
-
-        public bool IsPressed { get; private set; }
-        public bool Triggered => action.triggered;
-        public bool Released { get; private set; }
         
-        private InputAction action;
-
         public InputActionData(InputActionProperty property)
         {
             action = property.action;
@@ -45,8 +48,5 @@ namespace UsefulCode.Input
         }
 
         public T ReadValue() => action.ReadValue<T>();
-
-        public void Enable() => action.Enable();
-        public void Disable() => action.Disable();
     }
 }
