@@ -3,14 +3,10 @@ using UnityEngine.InputSystem;
 
 namespace UsefulCode.Input
 {
-    public abstract class InputActionData
-    {
-    }
-
     /// <summary>
     /// This class provides the usual input action functionality but extends it with extra functionality.
     /// </summary>
-    public class InputActionData<T> : InputActionData where T : struct
+    public abstract class InputActionData
     {
         public bool IsPressed { get; private set; }
         public bool Triggered => action.triggered;
@@ -32,8 +28,9 @@ namespace UsefulCode.Input
             action.canceled += ctx => IsPressed = false;
         }
 
-        public T ReadValue() => action.ReadValue<T>();
+        public T ReadValue<T>() where T : struct => action.ReadValue<T>();
         public void Enable() => action.Enable();
         public void Disable() => action.Disable();
     }
+
 }
