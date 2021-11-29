@@ -3,10 +3,14 @@ using UnityEngine.InputSystem;
 
 namespace UsefulCode.Input
 {
+    public abstract class InputActionData
+    {
+        public abstract void Tick();
+    }
     /// <summary>
     /// This class provides the usual input action functionality but extends it with extra functionality.
     /// </summary>
-    public class InputActionData<T> where T : struct
+    public class InputActionData<T> : InputActionData where T : struct
     {
         public event Action<InputAction.CallbackContext> Started;
         public event Action<InputAction.CallbackContext> Performed;
@@ -30,7 +34,7 @@ namespace UsefulCode.Input
             action.canceled += ctx => IsPressed = false;
         }
 
-        public void Tick()
+        public override void Tick()
         {
             if (action.phase == InputActionPhase.Canceled) {
                 Released = true;
