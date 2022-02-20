@@ -10,27 +10,49 @@ namespace UsefulCode.Input
     {
         public bool IsPressed { get; private set; }
         public bool Triggered => action.triggered;
-        public event Action<InputAction.CallbackContext> Started;
-        public event Action<InputAction.CallbackContext> Performed;
-        public event Action<InputAction.CallbackContext> Canceled;
+
+        public Action<InputAction.CallbackContext> SetStarted
+        {
+            set { action.started += value; }
+        }
+
+        public Action<InputAction.CallbackContext> UnsetStarted
+        {
+            set { action.started -= value; }
+        }
+
+        public Action<InputAction.CallbackContext> SetPerformed
+        {
+            set { action.performed += value; }
+        }
+
+        public Action<InputAction.CallbackContext> UnsetPerformed
+        {
+            set { action.performed -= value; }
+        }
+
+        public Action<InputAction.CallbackContext> SetCanceled
+        {
+            set { action.canceled += value; }
+        }
+
+        public Action<InputAction.CallbackContext> UnsetCanceled
+        {
+            set { action.canceled -= value; }
+        }
 
         private InputAction action;
 
         public InputActionData(InputActionProperty property)
         {
             action = property.action;
-            action.started += ctx => Started?.Invoke(ctx);
             action.started += ctx => IsPressed = true;
-
-            action.performed += ctx => Performed?.Invoke(ctx);
-
-            action.canceled += ctx => Canceled?.Invoke(ctx);
             action.canceled += ctx => IsPressed = false;
         }
 
         public T ReadValue<T>() where T : struct => action.ReadValue<T>();
         public void Enable() => action.Enable();
         public void Disable() => action.Disable();
+        public InputAction GetAction() => action;
     }
-
 }
