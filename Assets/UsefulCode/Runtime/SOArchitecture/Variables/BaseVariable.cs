@@ -49,7 +49,7 @@ namespace UsefulCode.SOArchitecture
         {
             if (readOnly)
             {
-                Debug.LogWarning($"The variable {name} you tried to change is Read Only", this);
+                Debug.LogWarning($"The variable {name} is Read Only", this);
                 return value;
             }
             
