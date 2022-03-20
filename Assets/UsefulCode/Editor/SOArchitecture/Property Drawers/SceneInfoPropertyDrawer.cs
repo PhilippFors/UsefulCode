@@ -31,7 +31,7 @@ namespace UsefulCode.SOArchitecture.Editor.Property_Drawers
                 size = new Vector2(propertyRect.width, EditorGUIUtility.singleLineHeight)
             };
 
-            var oldSceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(sceneNameProperty.stringValue);
+            var oldSceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePathProperty.stringValue);
             var sceneAsset = EditorGUI.ObjectField(sceneAssetRect, oldSceneAsset, typeof(SceneAsset), false);
             var sceneAssetPath = AssetDatabase.GetAssetPath(sceneAsset);
             
