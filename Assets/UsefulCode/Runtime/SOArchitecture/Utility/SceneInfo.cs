@@ -15,6 +15,11 @@ namespace UsefulCode.SOArchitecture.Utility
             get { return _sceneName; }
         }
 
+        public string ScenePath
+        {
+            get { return _scenePath; }
+        }
+
         /// <summary>
         /// Returns the index of the scene in the build settings; if not present, -1 will be returned instead.
         /// </summary>
@@ -44,7 +49,7 @@ namespace UsefulCode.SOArchitecture.Utility
         #if UNITY_EDITOR
         internal UnityEditor.SceneAsset Scene
         {
-            get { return UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.SceneAsset>(_sceneName); }
+            get { return UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.SceneAsset>(_scenePath); }
         }
         #endif
 
@@ -52,6 +57,9 @@ namespace UsefulCode.SOArchitecture.Utility
 
         [SerializeField]
         private string _sceneName;
+
+        [SerializeField]
+        private string _scenePath;
 
         [SerializeField]
         private int _sceneIndex;
