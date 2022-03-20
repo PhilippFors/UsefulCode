@@ -48,7 +48,7 @@ namespace UsefulCode.SOArchitecture.Editor.Property_Drawers
                 sceneNameProperty.stringValue = sceneName;
             }
 
-            if (string.IsNullOrEmpty(sceneNameProperty.stringValue))
+            if (string.IsNullOrEmpty(scenePathProperty.stringValue))
             {
                 sceneIndexProperty.intValue = -1;
                 enabledProperty.boolValue = false;
@@ -73,7 +73,7 @@ namespace UsefulCode.SOArchitecture.Editor.Property_Drawers
             enabledRect.y += EditorGUIUtility.singleLineHeight;
 
             EditorGUI.PropertyField(nameRect, sceneNameProperty);
-            EditorGUI.PropertyField(pathRect, sceneNameProperty);
+            EditorGUI.PropertyField(pathRect, scenePathProperty);
             EditorGUI.PropertyField(indexRect, sceneIndexProperty);
             EditorGUI.PropertyField(enabledRect, enabledProperty);
             EditorGUI.EndDisabledGroup();
