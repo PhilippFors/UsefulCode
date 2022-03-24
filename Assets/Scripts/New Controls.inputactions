@@ -1,0 +1,33 @@
+{
+    "name": "New Controls",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "0fdbb7a8-bc24-49ce-b676-cd9d8ef42a5e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "61a82eb8-fd2c-4752-ab51-0ad9252721d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "637c3ab9-dbc4-4748-b1c8-caf984b1e284",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
