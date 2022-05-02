@@ -37,13 +37,55 @@ namespace UsefulCode.Input
             }
         }
 
+        public Action<InputAction.CallbackContext> SetStarted {
+            set {
+                action.started += value;
+                startedCallbacks.Add(value);
+            }
+        }
+
+        public Action<InputAction.CallbackContext> UnsetStarted {
+            set {
+                action.started -= value;
+                startedCallbacks.Remove(value);
+            }
+        }
+
+        public Action<InputAction.CallbackContext> SetPerformed {
+            set {
+                action.started += value;
+                performedCallbacks.Add(value);
+            }
+        }
+
+        public Action<InputAction.CallbackContext> UnsetPerformed {
+            set {
+                action.started -= value;
+                performedCallbacks.Remove(value);
+            }
+        }
+
+        public Action<InputAction.CallbackContext> SetCancelled {
+            set {
+                action.canceled += value;
+                canceledCallbacks.Add(value);
+            }
+        }
+
+        public Action<InputAction.CallbackContext> UnsetCancelled {
+            set {
+                action.canceled -= value;
+                canceledCallbacks.Remove(value);
+            }
+        }
+
         private readonly List<Action<InputAction.CallbackContext>> startedCallbacks =
             new List<Action<InputAction.CallbackContext>>();
 
         private readonly List<Action<InputAction.CallbackContext>> performedCallbacks =
             new List<Action<InputAction.CallbackContext>>();
 
-        private readonly List<Action<InputAction.CallbackContext>> cancledCallbacks =
+        private readonly List<Action<InputAction.CallbackContext>> canceledCallbacks =
             new List<Action<InputAction.CallbackContext>>();
 
         private InputAction action;
@@ -71,42 +113,6 @@ namespace UsefulCode.Input
         public void Disable() => action.Disable();
         public InputAction GetAction() => action;
 
-        public void SetStarted(Action<InputAction.CallbackContext> callback)
-        {
-            action.started += callback;
-            startedCallbacks.Add(callback);
-        }
-
-        public void UnsetStarted(Action<InputAction.CallbackContext> callback)
-        {
-            action.started -= callback;
-            startedCallbacks.Remove(callback);
-        }
-
-        public void SetPerformed(Action<InputAction.CallbackContext> callback)
-        {
-            action.performed += callback;
-            performedCallbacks.Add(callback);
-        }
-
-        public void UnsetPerformed(Action<InputAction.CallbackContext> callback)
-        {
-            action.performed -= callback;
-            performedCallbacks.Remove(callback);
-        }
-
-        public void SetCanceled(Action<InputAction.CallbackContext> callback)
-        {
-            action.canceled += callback;
-            cancledCallbacks.Add(callback);
-        }
-
-        public void UnsetCanceled(Action<InputAction.CallbackContext> callback)
-        {
-            action.canceled -= callback;
-            cancledCallbacks.Remove(callback);
-        }
-
         public void Block()
         {
             blocked = true;
@@ -118,7 +124,7 @@ namespace UsefulCode.Input
                 action.performed -= c;
             }
 
-            foreach (var c in cancledCallbacks) {
+            foreach (var c in canceledCallbacks) {
                 action.canceled -= c;
             }
         }
@@ -134,7 +140,7 @@ namespace UsefulCode.Input
                 action.performed += c;
             }
 
-            foreach (var c in cancledCallbacks) {
+            foreach (var c in canceledCallbacks) {
                 action.canceled += c;
             }
         }
