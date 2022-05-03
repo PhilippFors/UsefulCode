@@ -40,57 +40,43 @@ namespace UsefulCode.Input
         public Action<InputAction.CallbackContext> SetStarted {
             set {
                 action.started += value;
-                startedCallbacks.Add(value);
             }
         }
 
         public Action<InputAction.CallbackContext> UnsetStarted {
             set {
                 action.started -= value;
-                startedCallbacks.Remove(value);
             }
         }
 
         public Action<InputAction.CallbackContext> SetPerformed {
             set {
                 action.started += value;
-                performedCallbacks.Add(value);
             }
         }
 
         public Action<InputAction.CallbackContext> UnsetPerformed {
             set {
                 action.started -= value;
-                performedCallbacks.Remove(value);
             }
         }
 
         public Action<InputAction.CallbackContext> SetCancelled {
             set {
                 action.canceled += value;
-                canceledCallbacks.Add(value);
             }
         }
 
         public Action<InputAction.CallbackContext> UnsetCancelled {
             set {
                 action.canceled -= value;
-                canceledCallbacks.Remove(value);
             }
         }
-
-        private readonly List<Action<InputAction.CallbackContext>> startedCallbacks =
-            new List<Action<InputAction.CallbackContext>>();
-
-        private readonly List<Action<InputAction.CallbackContext>> performedCallbacks =
-            new List<Action<InputAction.CallbackContext>>();
-
-        private readonly List<Action<InputAction.CallbackContext>> canceledCallbacks =
-            new List<Action<InputAction.CallbackContext>>();
 
         private InputAction action;
         private bool blocked;
         private bool isPressed;
+        private bool wasEnabled;
 
         public InputActionData(InputActionProperty property, InputType inputType)
         {
@@ -109,39 +95,32 @@ namespace UsefulCode.Input
             return action.ReadValue<T>();
         }
 
-        public void Enable() => action.Enable();
+        public void Enable()
+        {
+            if (blocked) {
+                return;
+            }
+            action.Enable();
+        }
+        
         public void Disable() => action.Disable();
         public InputAction GetAction() => action;
 
         public void Block()
         {
+            if (action.enabled) {
+                wasEnabled = true;
+            }
             blocked = true;
-            foreach (var c in startedCallbacks) {
-                action.started -= c;
-            }
-
-            foreach (var c in performedCallbacks) {
-                action.performed -= c;
-            }
-
-            foreach (var c in canceledCallbacks) {
-                action.canceled -= c;
-            }
+            Disable();
         }
 
         public void UnBlock()
         {
             blocked = false;
-            foreach (var c in startedCallbacks) {
-                action.started += c;
-            }
-
-            foreach (var c in performedCallbacks) {
-                action.performed += c;
-            }
-
-            foreach (var c in canceledCallbacks) {
-                action.canceled += c;
+            if (wasEnabled) {
+                Enable();
+                wasEnabled = false;
             }
         }
     }
