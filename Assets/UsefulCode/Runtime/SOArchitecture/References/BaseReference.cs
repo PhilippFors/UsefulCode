@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UsefulCode.SOArchitecture
 {
@@ -15,11 +16,11 @@ namespace UsefulCode.SOArchitecture
 
         public BaseReference(T baseValue)
         {
-            useConstantValue = true;
+            useConstant = true;
             constantValue = baseValue;
         }
 
-        [SerializeField] private bool useConstantValue = false;
+        [SerializeField] private bool useConstant = false;
 
         [SerializeField] private T constantValue;
 
@@ -30,23 +31,23 @@ namespace UsefulCode.SOArchitecture
             get => variable;
             set
             {
-                useConstantValue = false;
+                useConstant = false;
                 variable = value;
             }
         }
 
         public T Value
         {
-            get => useConstantValue || variable == null ? constantValue : variable.Value;
+            get => useConstant || variable == null ? constantValue : variable.Value;
             set
             {
-                if (!useConstantValue && variable != null)
+                if (!useConstant && variable != null)
                 {
                     variable.Value = value;
                 }
                 else
                 {
-                    useConstantValue = true;
+                    useConstant = true;
                     constantValue = value;
                 }
             }

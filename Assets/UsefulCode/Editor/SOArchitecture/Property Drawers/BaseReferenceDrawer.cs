@@ -1,5 +1,4 @@
-﻿using UsefulCode.SOArchitecture;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using Type = System.Type;
 
@@ -20,9 +19,9 @@ namespace UsefulCode.SOArchitecture.Editor.Property_Drawers
         private const float MultilineThreshold = 20;
 
         // Property Names
-        private const string VARIABLE_PROPERTY_NAME = "_variable";
-        private const string CONSTANT_VALUE_PROPERTY_NAME = "_constantValue";
-        private const string USE_CONSTANT_VALUE_PROPERTY_NAME = "_useConstant";
+        private const string VARIABLE_PROPERTY_NAME = "variable";
+        private const string CONSTANT_VALUE_PROPERTY_NAME = "constantValue";
+        private const string USE_CONSTANT_VALUE_PROPERTY_NAME = "useConstant";
 
         // Warnings
         private const string COULD_NOT_FIND_VALUE_FIELD_WARNING_FORMAT =
@@ -40,9 +39,9 @@ namespace UsefulCode.SOArchitecture.Editor.Property_Drawers
         {
             // Get properties
             this.property = property;
-            useConstant = property.FindPropertyRelative("_useConstant");
-            constantValue = property.FindPropertyRelative("_constantValue");
-            variable = property.FindPropertyRelative("_variable");
+            useConstant = property.FindPropertyRelative(USE_CONSTANT_VALUE_PROPERTY_NAME);
+            constantValue = property.FindPropertyRelative(CONSTANT_VALUE_PROPERTY_NAME);
+            variable = property.FindPropertyRelative(VARIABLE_PROPERTY_NAME);
                         
             int oldIndent = ResetIndent();
 

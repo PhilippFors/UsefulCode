@@ -17,5 +17,10 @@ namespace Utility
 
             return (Vector3.Distance(a, b) > 0.001f) ? (a + (b - a) * t) : b;
         }
+
+        public static float Remap(float input, Vector2 inMinMax, Vector2 outMinMax)
+        {
+            return outMinMax.x + (input - inMinMax.x) * (outMinMax.y - outMinMax.x) / (inMinMax.y - inMinMax.x);
+        }
     }
 }
